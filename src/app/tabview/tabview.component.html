@@ -1,0 +1,78 @@
+<table>
+       
+
+           
+<div class="w3-container w3-display-topleft " style="max-width:100% ">
+    <div class="w3-row w3-margin-top">
+      <div class="w3-row w3-margin-top" >  
+          
+           <div class='chrome_tab tab-{{homecolor()}}' (click)="homeClicked()" style ="float:left; margin: 0 -14px 0 0">
+                <p>HOME</p>
+            </div>
+         
+          <div   style ="float:left"  >
+                <tr>
+                <div *ngFor="let tabnumber of newTabList let tabIndex=index" 
+                style ="float:left ;  margin: 0 -14px 0 0;"
+                class='chrome_tab tab-{{tabcolor(tabIndex)}} w3-animate-left '  >
+                    <div (click)="tab2(tabIndex)"  
+                    class='chrome_tab tab-{{tabcolor(tabIndex)}}'style ="float:left;"  >
+                    {{tabnumber}}
+                       
+                    </div>
+                    <p  style= "float:right; padding:1px 7px;" (click)=removeTab(tabIndex) >  
+                            x
+                </p>
+               
+                </div>  
+                </tr>
+                <div *ngFor="let tabnumber of newTabList let tabIndex=index" [hidden]="home">
+                        <div [hidden]="!tabnum[tabIndex]" id="tabIndex">
+                                <app-dropdown  [Location]="newTabList[tabIndex]"></app-dropdown>
+                        </div>
+                </div>
+           
+                <div *ngFor="let tabnumber of newTabList let tabIndex=index" style ="float:left"  >
+                    <div *ngIf="!home" >
+                        <div class="w3-animate-zoom w3-card-2" style="float:left widht=800px" >
+                            <!-- <app-dropdown  [Location]="newTabList[tabIndex]"></app-dropdown> -->
+                            <div [hidden]=false id="tabIndex">
+                                    <!-- <app-dropdown  [Location]="newTabList[tabIndex]"></app-dropdown> -->
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                <!-- <ng-template #nottab>
+                    <div class="w3-animate-zoom"><app-dropdown></app-dropdown>
+                    </div>
+                </ng-template> -->
+            
+        </div>
+
+            <div *ngIf="home"  style=" left:200px">
+                <div *ngIf="home; else notsubmit">
+                      <ul class="w3-ul w3-card-2 w3-padding-64">
+                      <li *ngFor="let tabnumber of tabList let tabIndex=index" ><button (dblclick)="submit(tabIndex)" class="w3-btn w3-li w3-gray" style="width:800px; height:25px ">{{tabnumber}}</button>
+  
+                      </li>
+                    </ul>
+                    <ng-template #notsubmit  >
+                        <div class="w3-animate-zoom w3-animate-opacity"><app-tabview ></app-tabview></div>
+                         
+                      </ng-template>
+                  </div>
+                  
+                  
+              </div>
+              <!-- <div *ngIf="submitbtn">
+                  
+                    <div *ngIf="!tab; else notsubmit"><button (click)="submit()" class="w3-btn w3-padding w3-blue">close</button> 
+                    </div>
+                    
+                </div> -->
+    </div>
+  </div>
+</div>
+<p class="w3-text-red w3-animate-fading" >{{errorText}}</p>
+</table>
+  

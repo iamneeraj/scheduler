@@ -1,0 +1,71 @@
+<div class="w3-input ">
+  <h2>{{Location}}</h2>
+</div>
+
+<div class="w3-container w3-light-grey w3-padding-16" style="max-width:400px">
+  <div class="w3-row w3-margin-top">
+    <div class="w3-row w3-margin-top">   
+      <div class="w3-col s8">
+        <input type="text" 
+        class="w3-input w3-border w3-animate-input w3-padding"
+        placeholder="Add special needs here"
+        ng-model="addMe"
+        (input)="inputTest($event)">
+        
+      </div>
+      <div class="w3-col s2">
+        <button (click)="addItem()"  class="w3-btn w3-padding w3-green">+</button>
+      </div>
+      <div class="w3-col s2">
+        <button (click)="click() " ng-click="click()" class="w3-btn w3-padding w3-green">{{ buttonText }}</button>
+      </div>
+    </div>
+    <div class=" w3-margin-right  ">
+        
+          <div *ngFor="let x of selectedItems let iIndex = index" 
+          class="w3-btn w3-animate-zoom  w3-padding w3-green "
+          > {{x}}
+          <!-- <button (click)="removeItem(iIndex)"
+            class="w3-btn w3-small w3-green "
+            style="cursor:pointer">
+            x</button> -->
+            <label (click)="removeItem(iIndex)"  class="w3-btn1 "  >  X</label>
+          </div>
+          
+        </div>
+      <p *ngIf="!item; else notClicked" >{{ clickstatus }}
+      </p>
+      <ng-template #notClicked>
+        <div class="w3-card-2  w3-animate-top  ">
+          <ul class="w3-ul  ">
+            <!--
+              <li *ngFor="let x of products" class="w3-padding-16">{{x}}<input type="checkbox" class="w3-right w3-margin-right" class="w3-right w3-margin-top"  ng-model="all" /><span (click)="removeItem($index)" style="cursor:pointer;" class="w3-right w3-margin-right">X </span></li>
+            -->   
+            <li *ngFor="let x of product let itemIndex = index" > {{ checkItem(itemIndex) }} 
+              <!--
+                <input type="checkbox" 
+                class="w3-check w3-right w3-margin-right " 
+                [(ngModel)]="temp" name="ckbox"
+                (click)="addToList(itemIndex)"/>
+              -->
+              <button (click)="addToList(itemIndex)"
+                class="w3-btn  w3-padding w3-green w3-margin-left"
+                style="cursor:pointer">
+                {{ x  }} 
+                </button>
+                    
+                               
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+      <p class="w3-text-red " style="max-width:400px">{{errorText}}</p>
+      
+          
+      
+  </div>
+  
+  
+</div>
+
+
