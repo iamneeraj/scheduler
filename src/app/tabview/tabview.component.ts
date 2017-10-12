@@ -62,6 +62,7 @@ export class TabviewComponent implements OnInit {
      return this.activecolor;
    }
    removeTab(index){
+    this.errorText="";
     if(this.tabnum[index]){
      
       this.newTabList.splice(index,1);
@@ -115,7 +116,6 @@ export class TabviewComponent implements OnInit {
       else{
         this.tab2(this.newTabList.indexOf(this.tabList[index]));
       }
-      //this.submitbtn= true;
     
     
   }

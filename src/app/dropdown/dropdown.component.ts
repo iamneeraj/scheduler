@@ -11,32 +11,41 @@ export class DropdownComponent implements OnInit {
   @Input() Location: string;
   newItem ="";
   item=false;
-  product = ['item1', 'item2 - long text testing ', '12345678'];
-  products = ['item1', 'item2 - long text testing ', '12345678'];
+  i=0;
+  len=0;
+  product = ['item1', 'item2 - long text testing ', '12345678','abcd'];
+  products = ['item1', 'item2 - long text testing ', '12345678','abcd'];
   selectedItems = [];
   buttonText="↓";
   errorText="";
   check=false;
-  temp=false;
+  temp="";
   
   constructor() { }
-  cons
+  
   ngOnInit() {
   }
   inputTest(event: Event){
     this.newItem=(<HTMLInputElement>event.target).value;
-    if (this.selectedItems.indexOf(this.newItem) >= 0) {
-      this.errorText = "Already added";
+   
+  }
+
+  autocomp(str)
+  {
+    this.len=this.newItem.length;
+    if(str.search(this.newItem)>-1 && this.len>1)
+    {
+        if (this.selectedItems.indexOf(str) == -1){
+        this.temp=str;
+        return true;
+      }
+      else{
+        this.temp=null;
+       return false;
+      }
+      
     }
     
-    else if (this.product.indexOf(this.newItem) >= 0) {
-      this.item=true;
-      this.errorText ="Add item";
-    }
-    else {
-      this.errorText = "";
-    }
-  
   }
   click(){
     this.item=this.item==true?false:true;
@@ -61,9 +70,6 @@ export class DropdownComponent implements OnInit {
   removeItem(index){
     this.errorText = "\""+this.selectedItems[index] + "\"  Removed";
     this.selectedItems.splice(index,1);
-    //this.products.splice(this.products.indexOf(this.selectedItems[index]),1);
-    
-    
     
   }
 
@@ -76,11 +82,9 @@ export class DropdownComponent implements OnInit {
     }
     else{
       this.errorText = "Item already added";
-     // this.selectedItems.splice(this.selectedItems.indexOf(this.products[index]),1);
      
     }
-  
-    //this.click();
+
   }
 
   removefromList(){
