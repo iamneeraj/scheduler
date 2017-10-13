@@ -1,5 +1,7 @@
 import { Component, OnInit , Input } from '@angular/core';
 //import { Location } from '../tabview/tabview.component';
+import { ServerService } from './server.service';
+
 
 @Component({
   selector: 'app-dropdown',
@@ -21,7 +23,7 @@ export class DropdownComponent implements OnInit {
   check=false;
   temp="";
   
-  constructor() { }
+  constructor( private serverService: ServerService) { }
   
   ngOnInit() {
   }
@@ -57,7 +59,7 @@ export class DropdownComponent implements OnInit {
       if (this.products.indexOf(this.newItem) == -1) {
         this.products.push(this.newItem);
         this.addToList(this.products.indexOf(this.newItem));
-        this.checkItem(this.products.indexOf(this.newItem));
+      //  this.checkItem(this.products.indexOf(this.newItem));
 
       }
       else {
@@ -90,8 +92,14 @@ export class DropdownComponent implements OnInit {
   removefromList(){
     this.errorText = "click to delete";
   }
-  checkItem(index){
-    
+  onSubmit(){
+    this.serverService.storeServers(this.selectedItems)
+    .subscribe(
+      Response => console.log(Response),
+      Error => console.log(Error)
+    );
+
+  
   }
   
 }
